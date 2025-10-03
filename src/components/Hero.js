@@ -168,6 +168,58 @@ const Hero = () => {
       
       <div className="container">
         <div className="hero-content">
+          {/* Visual Content - First on Mobile */}
+          <div className={`hero-visual ${isMobile ? 'mobile' : ''}`}>
+            <div className="hero-image-container">
+              <div className="main-image-wrapper">
+                <img 
+                  src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Electrical and Borewell Services"
+                  className="hero-main-image"
+                />
+                <div className="image-overlay"></div>
+              </div>
+              
+              {/* Floating Elements - Show on both desktop and mobile */}
+              <div className="floating-card emergency">
+                <div className="card-icon">🚨</div>
+                <div className="card-content">
+                  <strong>24/7 Emergency</strong>
+                  <span>Quick Response</span>
+                </div>
+              </div>
+              
+              <div className="floating-card expert">
+                <div className="card-icon">👨‍🔧</div>
+                <div className="card-content">
+                  <strong>Certified Experts</strong>
+                  <span>Skilled Team</span>
+                </div>
+              </div>
+              
+              <div className="floating-card guarantee">
+                <div className="card-icon">✅</div>
+                <div className="card-content">
+                  <strong>Quality</strong>
+                  <span>Guaranteed</span>
+                </div>
+              </div>
+
+              {/* Mobile Service Tags */}
+              {isMobile && (
+                <div className="mobile-service-tags">
+                  <span className="service-tag">💧 Borewell</span>
+                  <span className="service-tag">⚡ Electrical</span>
+                  <span className="service-tag">🔧 Repair</span>
+                </div>
+              )}
+
+              {/* Animated Elements */}
+              <div className="animated-water-flow"></div>
+              <div className="animated-spark"></div>
+            </div>
+          </div>
+
           {/* Text Content */}
           <div className="hero-text">
             <div className="hero-badge">
@@ -260,65 +312,6 @@ const Hero = () => {
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-
-          {/* Visual Content - Mobile Optimized */}
-          <div className={`hero-visual ${isMobile ? 'mobile' : ''}`}>
-            <div className="hero-image-container">
-              <div className="main-image-wrapper">
-                <img 
-                  src={isMobile 
-                    ? "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                    : "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  }
-                  alt="Electrical and Borewell Services"
-                  className="hero-main-image"
-                />
-                <div className="image-overlay"></div>
-              </div>
-              
-              {/* Floating Elements - Hidden on mobile */}
-              {!isMobile && (
-                <>
-                  <div className="floating-card emergency">
-                    <div className="card-icon">🚨</div>
-                    <div className="card-content">
-                      <strong>24/7 Emergency</strong>
-                      <span>Quick Response Team</span>
-                    </div>
-                  </div>
-                  
-                  <div className="floating-card expert">
-                    <div className="card-icon">👨‍🔧</div>
-                    <div className="card-content">
-                      <strong>Certified Experts</strong>
-                      <span>Skilled Professionals</span>
-                    </div>
-                  </div>
-                  
-                  <div className="floating-card guarantee">
-                    <div className="card-icon">✅</div>
-                    <div className="card-content">
-                      <strong>Quality Guarantee</strong>
-                      <span>1 Year Warranty</span>
-                    </div>
-                  </div>
-                </>
-              )}
-
-              {/* Mobile Service Tags */}
-              {isMobile && (
-                <div className="mobile-service-tags">
-                  <span className="service-tag">💧 Borewell</span>
-                  <span className="service-tag">⚡ Electrical</span>
-                  <span className="service-tag">🔧 Repair</span>
-                </div>
-              )}
-
-              {/* Animated Elements */}
-              <div className="animated-water-flow"></div>
-              <div className="animated-spark"></div>
             </div>
           </div>
         </div>
