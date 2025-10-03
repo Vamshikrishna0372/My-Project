@@ -41,15 +41,26 @@ const Header = () => {
   const handleLinkClick = (link) => {
     setActiveLink(link);
     setIsMenuOpen(false);
+    
+    // Smooth scroll to section
+    const element = document.getElementById(link);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleAuthClick = () => {
+    alert('Login/Signup clicked!');
+    setIsMenuOpen(false);
   };
 
   const navItems = [
-    { id: 'home', label: 'Home', icon: '' },
-    { id: 'categories', label: 'Categories', icon: '' },
-    { id: 'cart', label: 'Cart', icon: '', badge: 2 },
-    { id: 'bookings', label: 'Bookings', icon: '' },
-    { id: 'profile', label: 'Profile', icon: '👤' },
-    { id: 'login', label: 'Login/Signup', icon: '', isButton: true }
+    { id: 'home', label: 'Home', icon: '🏠' },
+    { id: 'services-section', label: 'Services', icon: '⚙️' },
+    { id: 'categories', label: 'Categories', icon: '📁' },
+    { id: 'cart', label: 'Cart', icon: '🛒', badge: 2 },
+    { id: 'bookings', label: 'Bookings', icon: '📅' },
+    { id: 'profile', label: 'Profile', icon: '👤' }
   ];
 
   return (
@@ -68,15 +79,25 @@ const Header = () => {
               <li key={item.id} className={item.id === 'cart' ? 'cart-item' : ''}>
                 <a 
                   href={`#${item.id}`}
-                  className={`${item.id === activeLink ? 'active' : ''} ${item.isButton ? 'login-btn' : ''}`}
-                  onClick={() => handleLinkClick(item.id)}
+                  className={`nav-link ${item.id === activeLink ? 'active' : ''}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick(item.id);
+                  }}
                 >
-                  {!item.isButton && <span className="nav-icon">{item.icon}</span>}
+                  <span className="nav-icon">{item.icon}</span>
                   {item.label}
                   {item.badge && <span className="cart-badge">{item.badge}</span>}
                 </a>
               </li>
             ))}
+            {/* Single Desktop Auth Button */}
+            <li>
+              <button className="auth-btn" onClick={handleAuthClick}>
+                <span className="nav-icon">🔐</span>
+                Login / Signup
+              </button>
+            </li>
           </ul>
         </nav>
 
@@ -96,12 +117,9 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         <nav className={`mobile-nav ${isMenuOpen ? 'active' : ''}`}>
-          {/* Mobile Header */}
+          {/* Mobile Navigation Header */}
           <div className="mobile-nav-header">
-            <div className="mobile-logo">
-              <div className="logo-icon">⚡</div>
-              <span className="logo-text">ElectroBore Hub</span>
-            </div>
+            <div className="mobile-nav-title">Menu</div>
             <button className="close-menu-btn" onClick={toggleMenu} aria-label="Close menu">
               ✕
             </button>
@@ -113,8 +131,11 @@ const Header = () => {
               <li key={item.id} className={item.id === 'cart' ? 'cart-item' : ''}>
                 <a 
                   href={`#${item.id}`}
-                  className={`mobile-nav-link ${item.id === activeLink ? 'active' : ''} ${item.isButton ? 'login-btn' : ''}`}
-                  onClick={() => handleLinkClick(item.id)}
+                  className={`mobile-nav-link ${item.id === activeLink ? 'active' : ''}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick(item.id);
+                  }}
                 >
                   <span className="nav-icon">{item.icon}</span>
                   <span className="nav-text">{item.label}</span>
@@ -123,31 +144,25 @@ const Header = () => {
                 </a>
               </li>
             ))}
+            
+            {/* Single Mobile Auth Button */}
+            <li>
+              <button className="mobile-auth-btn" onClick={handleAuthClick}>
+                <span className="nav-icon">🔐</span>
+                <span className="nav-text">Login / Signup</span>
+                <span className="nav-arrow">›</span>
+              </button>
+            </li>
           </ul>
 
-          {/* Mobile Footer */}
+          {/* Mobile Footer - Simplified */}
           <div className="mobile-nav-footer">
-            <div className="contact-info">
-              <div className="contact-item">
-                <span className="contact-icon">📞</span>
-                <div>
-                  <div className="contact-label">Emergency Line</div>
-                  <div className="contact-value">+1 (555) 123-4567</div>
-                </div>
+            <div className="emergency-contact">
+              <div className="emergency-icon">🚨</div>
+              <div className="emergency-info">
+                <div className="emergency-label">24/7 Emergency</div>
+                <div className="emergency-number">+1 (555) 123-4567</div>
               </div>
-              <div className="contact-item">
-                <span className="contact-icon">🕒</span>
-                <div>
-                  <div className="contact-label">24/7 Available</div>
-                  <div className="contact-value">Quick Response</div>
-                </div>
-              </div>
-            </div>
-            <div className="social-links">
-              <a href="#" className="social-link" aria-label="Facebook">📘</a>
-              <a href="#" className="social-link" aria-label="Twitter">🐦</a>
-              <a href="#" className="social-link" aria-label="Instagram">📷</a>
-              <a href="#" className="social-link" aria-label="WhatsApp">💬</a>
             </div>
           </div>
         </nav>

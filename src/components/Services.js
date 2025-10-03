@@ -1,3 +1,4 @@
+// components/Services.js
 import React, { useState, useEffect } from 'react';
 import './Services.css';
 
@@ -79,19 +80,20 @@ const Services = () => {
   };
 
   return (
-    <section className="services" id="services">
+    <section className="services" id="services-section">
       <div className="container">
         <div className="services-header">
-  <div className="section-badge">ElectroBore Services</div>
-  <h2>Professional Borewell & Electrical Experts</h2>
-  <p>Specialized in borewell drilling, submersible pump installation, and complete electrical solutions for agricultural and industrial needs</p>
-</div>
+          <div className="section-badge">ElectroBore Services</div>
+          <h2>Professional Borewell & Electrical Experts</h2>
+          <p>Specialized in borewell drilling, submersible pump installation, and complete electrical solutions for agricultural and industrial needs</p>
+        </div>
         
         {/* 2x2 Grid for All Devices */}
         <div className="services-grid">
           {services.map((service, index) => (
             <div
               key={service.id}
+              id={`service-${service.id}`}
               className={`service-card ${activeCard === service.id ? 'active' : ''} ${isMobile ? 'mobile' : ''}`}
               data-type={service.type}
               onMouseEnter={() => !isMobile && setActiveCard(service.id)}
