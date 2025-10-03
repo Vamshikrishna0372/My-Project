@@ -1,0 +1,34 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-bottom: 80px; /* Space for footer tabs */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .hero-left {
+    margin-top: 20px;
+  }
+
+  .nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  .footer-tabs {
+    flex-wrap: wrap;
+    padding: 12px 0;
+  }
+}
